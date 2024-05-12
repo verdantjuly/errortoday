@@ -1,0 +1,26 @@
+<h1>Errors</h1>
+<% if @today %>
+  <h3>Today's Error: <%= link_to @today.error, @today %></h3>
+<% else %>
+  <p>No errors occurred today.</p>
+<% end %>
+
+<h3><%= link_to "New error", new_error_path %></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Error</th>
+      <th>User</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @errors.each do |error| %>
+      <tr>
+        <td><%= link_to error.error, error %></td>
+        <td><%= error.user.email %></td>
+        <td><%= error.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

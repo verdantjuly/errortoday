@@ -1,0 +1,22 @@
+<%= form_with(model: occur) do |form| %>
+  <% if occur.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(occur.errors.count, "error") %> prohibited this occur from being saved:</h2>
+
+      <ul>
+        <% occur.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :error_id, style: "display: block" %>
+    <%= form.text_field :error_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

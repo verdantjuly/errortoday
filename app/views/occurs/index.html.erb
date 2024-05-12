@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Occurs</h1>
+
+<div id="occurs">
+  <% @occurs.each do |occur| %>
+    <%= render occur %>
+    <p>
+      <%= link_to "Show this occur", occur %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New occur", new_occur_path %>

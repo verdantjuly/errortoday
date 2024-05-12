@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Comments</h1>
+
+<div>
+  <%= form_with(model: Comment.new, url: comments_path, method: "post") do |form| %>
+    <%= form.hidden_field :error_id, value: @error.id %>
+    <%= form.text_field :content %>
+    <%= form.submit "New Comment" %>
+  <% end %>
+</div>
+
+<div id="comments">
+     <table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>User</th>
+      <th>Date</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+  <% @comments.each do |comment| %>
+    <%= render comment %>
+  <% end %>
+  </table>
+</div>
+

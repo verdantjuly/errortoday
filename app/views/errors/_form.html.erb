@@ -1,0 +1,27 @@
+<%= form_with(model: error) do |form| %>
+  <% if error.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(error.errors.count, "error") %> prohibited this error from being saved:</h2>
+
+      <ul>
+        <% error.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "error-form">
+    <%= form.label :error, style: "display: block" %>  
+    <%= form.text_field :error %>
+  </div>
+
+  <div class = "error-form">
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class = "error-form">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @error %>
+<hr/>
+<div class="error_buttons">
+  <%= button_to "Edit", edit_error_path(@error) %>
+  <%= button_to "Destroy", @error, method: :delete %>
+  <%= form_with(model: Occur.new, url: occurs_path, method: "post") do |form| %>
+    <%= form.hidden_field :error_id, value: @error.id %>
+    <%= form.submit "New Occur" %>
+  <% end %>
+  <%= link_to "Back to errors", errors_path %>
+</div>
+
+<div>
+  <%= render 'comments/index', error_id: @error.id %>
+</div>

@@ -6,7 +6,7 @@
         <td><%= comment.content %></td>
         <td><%= comment.user.email %></td>
         <td><%= comment.created_at %></td>
-        <td> <%= button_to "Edit", edit_comment_path(comment.id) %></td>
+        <td> <%= button_to "Edit", edit_comment_path(comment.id),method: :get %></td>
         <td> <%= button_to "Destroy", @comment, method: :delete %></td>
       </tr>
   </tbody>

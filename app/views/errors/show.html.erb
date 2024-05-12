@@ -3,7 +3,7 @@
 <%= render @error %>
 <hr/>
 <div class="error_buttons">
-  <%= button_to "Edit", edit_error_path(@error) %>
+  <%= button_to "Edit", edit_error_path(@error), method: :get %>
   <%= button_to "Destroy", @error, method: :delete %>
   <%= form_with(model: Occur.new, url: occurs_path, method: "post") do |form| %>
     <%= form.hidden_field :error_id, value: @error.id %>

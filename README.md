@@ -2,6 +2,10 @@
 
 Calculate and shows most occured error during last 1 day.
 
+## Versions
+- ruby 3.1.4p223
+- Rails 7.1.3.2
+
 ## How to Run
 
 - Bundle Install

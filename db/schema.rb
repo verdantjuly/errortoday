@@ -10,29 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_222613) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_14_172433) do
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
   create_table "comments", force: :cascade do |t|
-    t.bigint "error_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "error_id", null: false
+    t.integer "user_id", null: false
     t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["error_id"], name: "index_comments_on_error_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "errors", force: :cascade do |t|
     t.string "error", null: false
     t.string "content"
     t.bigint "user_id", null: false
+    t.boolean "today", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "today", default: false
   end
 
   create_table "occurs", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "error_id", null: false
+    t.integer "user_id", null: false
+    t.integer "error_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["error_id"], name: "index_occurs_on_error_id"
+    t.index ["user_id"], name: "index_occurs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,8 +63,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_222613) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "errors", on_delete: :nullify
-  add_foreign_key "comments", "users", on_delete: :nullify
-  add_foreign_key "occurs", "errors", on_delete: :nullify
-  add_foreign_key "occurs", "users", on_delete: :nullify
+  add_foreign_key "comments", "errors"
+  add_foreign_key "comments", "users"
+  add_foreign_key "occurs", "errors"
+  add_foreign_key "occurs", "users"
 end

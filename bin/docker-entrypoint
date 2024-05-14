@@ -1,8 +1,22 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
+
+echo "Starting entrypoint script..."
+
+# Print system architecture
+uname -m
+
+# List files in the directory
+ls -la /rails/bin/
 
 # If running the rails server then create or migrate existing database
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  echo "Preparing database..."
   ./bin/rails db:prepare
 fi
 
-exec "${@}"
+echo "Executing command: $@"
+
+# Execute the command
+exec "$@"
